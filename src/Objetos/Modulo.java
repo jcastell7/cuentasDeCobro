@@ -168,14 +168,14 @@ public class Modulo {
     public String concepto(){
     String s;
     s=totalHoras()+" HORAS DICTADAS EN LA ASIGNATURA "+'"'+getModulo().toUpperCase()
-            +'"'+" DEL PROGRAMA DE"+getPrograma().toUpperCase()+" GRUPO "+getGrupo().toUpperCase();
+            +'"'+" DEL PROGRAMA DE "+getPrograma().toUpperCase()+" GRUPO "+getGrupo().toUpperCase();
     return s;
     }
     public String fecha(){
     String res="";
-    Date fecha=getFechaCreacion().getTime();
-    String mes=ConversionNumerosLetras.mesALetras((fecha.getMonth()+1));
-    res=(fecha.getDate()+"/")+(mes+"/")+(fecha.getYear()+1900);
+    Calendar fecha=getFechaCreacion();
+    String mes=ConversionNumerosLetras.mesALetras((fecha.get(Calendar.MONTH)+1));
+    res=(fecha.get(Calendar.DAY_OF_MONTH)+"/")+(mes+"/")+(fecha.get(Calendar.YEAR)+1900);
     return res;
     }
 }
