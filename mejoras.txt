@@ -1,0 +1,16 @@
+añadir las opciones de Seminario, Conferencia
+
+
+Corregir errores de ortografía
+
+
+Mostrar el nombre del coordinador academico debajo de su firma
+
+
+corregir scrolling------ listo
+
+
+mejorar la funcionalidad de la añadidura de las fechas
+
+
+añadir funcionalidad al calendario de la derecha del dialogo FechaYHora
