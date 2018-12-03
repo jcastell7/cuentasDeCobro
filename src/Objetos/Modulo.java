@@ -173,7 +173,7 @@ public class Modulo {
     public String fecha(){
     Calendar fecha=getFechaCreacion();
     String mes=ConversionNumerosLetras.mesALetras((fecha.get(Calendar.MONTH)+1));
-    String res=(fecha.get(Calendar.DAY_OF_MONTH)+"/")+(mes+"/")+(fecha.get(Calendar.YEAR)+1900);
+    String res=(fecha.get(Calendar.DAY_OF_MONTH)+"/")+(mes+"/")+(fecha.get(Calendar.YEAR));
     return res;
     }
 }

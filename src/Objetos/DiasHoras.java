@@ -34,7 +34,7 @@ public class DiasHoras {
 
     public String fecha(){
     Calendar dias=getFecha();
-    String res=(dias.get(Calendar.DAY_OF_MONTH)+"/")+((dias.get(Calendar.MONTH)+1)+"/")+(dias.get(Calendar.YEAR)+1900);
+    String res=(dias.get(Calendar.DAY_OF_MONTH)+"/")+((dias.get(Calendar.MONTH)+1)+"/")+(dias.get(Calendar.YEAR));
     return res;
     }
     
