@@ -1,7 +1,7 @@
-añadir las opciones de Seminario, Conferencia
+a–adir las opciones de Seminario, Conferencia ÑÑÑÑ listo
 
 
-Corregir errores de ortografía
+Corregir errores de ortograf’a ÑÑ listo 
 
 
 Mostrar el nombre del coordinador academico debajo de su firma
@@ -10,7 +10,7 @@ Mostrar el nombre del coordinador academico debajo de su firma
 corregir scrolling------ listo
 
 
-mejorar la funcionalidad de la añadidura de las fechas
+mejorar la funcionalidad de la a–adidura de las fechas
 
 
-añadir funcionalidad al calendario de la derecha del dialogo FechaYHora
+a–adir funcionalidad al calendario de la derecha del dialogo FechaYHora

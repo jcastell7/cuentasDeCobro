@@ -27,6 +27,8 @@ public class Modulo {
     private Calendar fechaCreacion;
     //correo del coordinador del programa
     private String correoCoordinador;
+    //nombre del coordinador del programa
+    private String nombreCoordinador;
     //numero de imputacion de la cuenta
     private String numeroDeImputacion;
     //valor del transporte interno
@@ -147,6 +149,15 @@ public class Modulo {
     public void setCorreoCoordinador(String correoCoordinador) {
         this.correoCoordinador = correoCoordinador;
     }
+
+    public String getNombreCoordinador() {
+        return nombreCoordinador;
+    }
+
+    public void setNombreCoordinador(String nombreCoordinador) {
+        this.nombreCoordinador = nombreCoordinador;
+    }
+    
 
     //devuelve la cantidad de horas almacenadas en el array de diasYHoras
     public int totalHoras() {

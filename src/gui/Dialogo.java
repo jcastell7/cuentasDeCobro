@@ -3,7 +3,6 @@ package gui;
 import Objetos.Docente;
 import Objetos.Modulo;
 import java.awt.event.KeyEvent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -80,7 +79,7 @@ public class Dialogo extends javax.swing.JDialog {
                 btnAceptarActionPerformed(evt);
             }
         });
-        panel.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        panel.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         btnTerminar.setText("Terminar");
         btnTerminar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,10 +87,15 @@ public class Dialogo extends javax.swing.JDialog {
                 btnTerminarActionPerformed(evt);
             }
         });
-        panel.add(btnTerminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+        panel.add(btnTerminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
         cmbCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panel.add(cmbCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        cmbCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbComboActionPerformed(evt);
+            }
+        });
+        panel.add(cmbCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         txtTexto2.setText("jTextField1");
         txtTexto2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "texto 2"));
@@ -100,41 +104,41 @@ public class Dialogo extends javax.swing.JDialog {
                 txtTexto2KeyTyped(evt);
             }
         });
-        panel.add(txtTexto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, -1));
+        panel.add(txtTexto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 240, -1));
 
         cmbFecha.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
                     new java.awt.Color(0, 0, 0),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
                     new java.awt.Color(0, 0, 0),
                     new java.awt.Color(0, 0, 255),
                     true,
                     true,
                     new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
                     new java.awt.Color(0, 0, 255),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
                     new java.awt.Color(128, 128, 128),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
                     new java.awt.Color(0, 0, 0),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 11),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
                     new java.awt.Color(0, 0, 0),
                     new java.awt.Color(255, 0, 0),
                     false,
@@ -145,7 +149,7 @@ public class Dialogo extends javax.swing.JDialog {
                 true)));
     cmbFecha.setCalendarPreferredSize(new java.awt.Dimension(350, 250));
     cmbFecha.setNavigateFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 10));
-    panel.add(cmbFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
+    panel.add(cmbFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
     chkOpcional.setText("jCheckBox1");
     chkOpcional.addItemListener(new java.awt.event.ItemListener() {
@@ -153,7 +157,7 @@ public class Dialogo extends javax.swing.JDialog {
             chkOpcionalItemStateChanged(evt);
         }
     });
-    panel.add(chkOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+    panel.add(chkOpcional, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
     txtTexto1.setText("jTextField1");
     txtTexto1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "texto 1"));
@@ -162,11 +166,11 @@ public class Dialogo extends javax.swing.JDialog {
             txtTexto1KeyTyped(evt);
         }
     });
-    panel.add(txtTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 240, -1));
+    panel.add(txtTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 240, -1));
 
     txtTexto3.setText("jTextField2");
     txtTexto3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "texto 3"));
-    panel.add(txtTexto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 240, -1));
+    panel.add(txtTexto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 240, -1));
 
     btnAtras.setText("Atras");
     btnAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -174,9 +178,9 @@ public class Dialogo extends javax.swing.JDialog {
             btnAtrasActionPerformed(evt);
         }
     });
-    panel.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+    panel.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
-    getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 220));
+    getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 250));
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -337,6 +341,10 @@ public class Dialogo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_panelKeyPressed
 
+    private void cmbComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbComboActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -451,9 +459,13 @@ public class Dialogo extends javax.swing.JDialog {
         cmbCombo.setVisible(true);
         cmbCombo.removeAllItems();
         cmbCombo.addItem("Doctorado");
-        cmbCombo.addItem("Maestria");
-        cmbCombo.addItem("Especializacion");
+        cmbCombo.addItem("Maestría");
+        cmbCombo.addItem("Especialización");
         cmbCombo.addItem("Diplomado");
+        cmbCombo.addItem("Seminario");
+        cmbCombo.addItem("Conferencia");
+        txtTexto1.setVisible(true);
+        txtTexto1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Nombre Coordinador"));
         txtTexto2.setVisible(true);
         txtTexto2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Nombre Programa"));
         txtTexto3.setVisible(true);
