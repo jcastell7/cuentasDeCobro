@@ -478,6 +478,7 @@ public class Dialogo extends javax.swing.JDialog {
     public void setPrograma() {
         modulo.setPrograma(cmbCombo.getSelectedItem().toString() + " en " + txtTexto2.getText());
         modulo.setCorreoCoordinador(txtTexto3.getText().trim());
+        modulo.setNombreCoordinador(txtTexto1.getText().trim());
     }
 
     //se recibe el numero de imputacion de la cuenta

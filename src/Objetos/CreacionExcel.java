@@ -138,6 +138,7 @@ public void llenarTablas(XSSFSheet my_worksheet){
             String a = ConversionNumerosLetras.convertNumberToLetter((modulo.totalHoras() * modulo.getValorHora()) + modulo.getTransporteInt());
             my_worksheet.getRow(51).getCell(6).setCellValue(a.substring(2, a.length()));
             my_worksheet.getRow(54).getCell(2).setCellValue(modulo.getObservaciones());
+            my_worksheet.getRow(61).getCell(9).setCellValue(modulo.getNombreCoordinador());
             archivo.close();
             FileOutputStream output_file = new FileOutputStream(new File(ruta));
             cuentaCobro.write(output_file);

@@ -4,7 +4,7 @@ a–adir las opciones de Seminario, Conferencia ÑÑÑÑ listo
 Corregir errores de ortograf’a ÑÑ listo 
 
 
-Mostrar el nombre del coordinador academico debajo de su firma
+Mostrar el nombre del coordinador academico debajo de su firma ÑÑÑlisto
 
 
 corregir scrolling------ listo
