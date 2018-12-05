@@ -30,6 +30,7 @@ public class FechaYHora extends javax.swing.JDialog {
     //se recibe el modulo para compartir la informacion entre clases
     Modulo modulo;
     Clipboard cb;
+
     public FechaYHora(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -64,7 +65,7 @@ public class FechaYHora extends javax.swing.JDialog {
         txtTotalHoras = new javax.swing.JTextField();
         btnAtras = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        dateChooserPanel1 = new datechooser.beans.DateChooserPanel();
+        dateChooser = new datechooser.beans.DateChooserPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -158,15 +159,21 @@ public class FechaYHora extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        dateChooser.addSelectionChangedListener(new datechooser.events.SelectionChangedListener() {
+            public void onSelectionChange(datechooser.events.SelectionChangedEvent evt) {
+                dateChooserOnSelectionChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dateChooserPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+            .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dateChooserPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,44 +232,45 @@ public class FechaYHora extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void tblTablaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblTablaKeyTyped
-       /*
+        /*
         se valida la escritura de la tabla haciendo que no sea editable y que mediante
         los eventos de las teclas se capte la informacion y se escriba en la tabla
         evitando asi errores de escritura
-        */
-       
-       //si la tecla que se lee es la de borrar borra el ultimo caracter de la cadena
-       if(evt.getKeyChar()==KeyEvent.VK_CONTROL&&evt.getKeyChar()==KeyEvent.VK_V){
-           Transferable dato = cb.getContents(this);
-           String info=dato.toString();
-           char [] c=info.toCharArray();
-           for(int i=0;i<c.length;i++){
-           if (tblTabla.getSelectedColumn() == 1) {
-                if ((c[i] < '0' || c[i] > '9') && c[i] != '/') {
-                    evt.consume();
-                } else if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null) {
-                    String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "" + evt.getKeyChar();
-                    tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
-                } else {
-                    String s = "" + evt.getKeyChar();
-                    tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+         */
+
+        //si la tecla que se lee es la de borrar borra el ultimo caracter de la cadena
+        //recibe comando de pegar "crt+v" para las fechas
+        if (evt.getKeyChar() == KeyEvent.VK_CONTROL && evt.getKeyChar() == KeyEvent.VK_V) {
+            Transferable dato = cb.getContents(this);
+            String info = dato.toString();
+            char[] c = info.toCharArray();
+            for (int i = 0; i < c.length; i++) {
+                if (tblTabla.getSelectedColumn() == 1) {
+                    if ((c[i] < '0' || c[i] > '9') && c[i] != '/') {
+                        evt.consume();
+                    } else if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null) {
+                        String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "" + evt.getKeyChar();
+                        tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                    } else {
+                        String s = "" + evt.getKeyChar();
+                        tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                    }
+                }
+                if (tblTabla.getSelectedColumn() == 2) {
+                    if (c[i] < '0' || c[i] > '9') {
+                        evt.consume();
+                    } else if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null) {
+                        String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "" + evt.getKeyChar();
+                        tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                    } else {
+                        String s = "" + evt.getKeyChar();
+                        tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                    }
                 }
             }
-        if (tblTabla.getSelectedColumn() == 2) {
-            if (c[i] < '0' || c[i] > '9') {
-                evt.consume();
-            } else if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null) {
-                String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "" + evt.getKeyChar();
-                tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
-            } else {
-                String s = "" + evt.getKeyChar();
-                tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
-            }
         }
-       }
-       }
-       
-        if(evt.getKeyChar()!=KeyEvent.VK_BACK_SPACE){
+
+        if (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
             if (tblTabla.getSelectedColumn() == 1) {
                 char c = evt.getKeyChar();
                 if ((c < '0' || c > '9') && c != '/') {
@@ -275,48 +283,61 @@ public class FechaYHora extends javax.swing.JDialog {
                     tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
                 }
             }
-        if (tblTabla.getSelectedColumn() == 2) {
-            char c = evt.getKeyChar();
-            if (c < '0' || c > '9') {
-                evt.consume();
-            } else if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null) {
-                String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "" + evt.getKeyChar();
-                tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
-            } else {
-                String s = "" + evt.getKeyChar();
-                tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+            if (tblTabla.getSelectedColumn() == 2) {
+                char c = evt.getKeyChar();
+                if (c < '0' || c > '9') {
+                    evt.consume();
+                } else if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null) {
+                    String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "" + evt.getKeyChar();
+                    tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                } else {
+                    String s = "" + evt.getKeyChar();
+                    tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                }
             }
-        }
-        }else{
-            if(tblTabla.getSelectedColumn() == 1){
-                if(tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().length()>1){
-        if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null||!tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().isEmpty()) {
-                String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "";
-                s=s.substring(0, s.length()-1);
-                tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
-            } }else {
-                String s = "";
-                tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+        } else {
+            if (tblTabla.getSelectedColumn() == 1) {
+                if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().length() > 1) {
+                    if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null || !tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().isEmpty()) {
+                        String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "";
+                        s = s.substring(0, s.length() - 1);
+                        tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                    }
+                } else {
+                    String s = "";
+                    tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                }
             }
-        }if(tblTabla.getSelectedColumn() == 2){
-            if(tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().length()>1){
-                if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null||!tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().isEmpty()) {
-                String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "";
-                s=s.substring(0, s.length()-1);
-                tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
-            } }else{
-                tblTabla.setValueAt(0, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+            if (tblTabla.getSelectedColumn() == 2) {
+                if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().length() > 1) {
+                    if (tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) != null || !tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()).toString().isEmpty()) {
+                        String s = tblTabla.getValueAt(tblTabla.getSelectedRow(), tblTabla.getSelectedColumn()) + "";
+                        s = s.substring(0, s.length() - 1);
+                        tblTabla.setValueAt(s, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                    }
+                } else {
+                    tblTabla.setValueAt(0, tblTabla.getSelectedRow(), tblTabla.getSelectedColumn());
+                }
             }
-        }
         }
     }//GEN-LAST:event_tblTablaKeyTyped
 
     private void panelFechaYHoraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelFechaYHoraKeyPressed
         // TODO add your handling code here:
-                if(evt.getKeyChar()==KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             btnAceptarActionPerformed(null);
         }
     }//GEN-LAST:event_panelFechaYHoraKeyPressed
+
+    private void dateChooserOnSelectionChange(datechooser.events.SelectionChangedEvent evt) {//GEN-FIRST:event_dateChooserOnSelectionChange
+         // TODO add your handling code here:
+         if (tblTabla.getSelectedColumn() == 1) {
+         int fila = tblTabla.getSelectedRow();
+         Calendar fecha = dateChooser.getSelectedDate();
+         String valor = (fecha.get(Calendar.DAY_OF_MONTH)+"/")+((fecha.get(Calendar.MONTH)+1)+"/")+(fecha.get(Calendar.YEAR));
+         tblTabla.setValueAt(valor, fila, 1);
+         }
+    }//GEN-LAST:event_dateChooserOnSelectionChange
 
     /**
      * @param args the command line arguments
@@ -367,27 +388,29 @@ public class FechaYHora extends javax.swing.JDialog {
         int i = 0;
         String fecha;
         int cont = 0;
-        try{
-        while (i<8&&tblTabla.getValueAt(i, 1) != null && tblTabla.getValueAt(i, 2) != null) {
-            if(i<8){
-            fecha = tblTabla.getValueAt(i, 1) + "";
-            String[] parts = fecha.split("/");
-            int dia;
-            int mes;
-            dia = Integer.parseInt(parts[0]);
-            mes = Integer.parseInt(parts[1]);
-            if (mes > 12) {
-                JOptionPane.showMessageDialog(this, "Los meses no pueden ser mayores de 12");
-                cont++;
+        try {
+            while (i < 8 && tblTabla.getValueAt(i, 1) != null && tblTabla.getValueAt(i, 2) != null) {
+                if (i < 8) {
+                    fecha = tblTabla.getValueAt(i, 1) + "";
+                    String[] parts = fecha.split("/");
+                    int dia;
+                    int mes;
+                    dia = Integer.parseInt(parts[0]);
+                    mes = Integer.parseInt(parts[1]);
+                    if (mes > 12) {
+                        JOptionPane.showMessageDialog(this, "Los meses no pueden ser mayores de 12");
+                        cont++;
+                    }
+                    if (dia > 31) {
+                        JOptionPane.showMessageDialog(this, "Los dias no pueden ser mayores de 31");
+                        cont++;
+                    }
+                    i++;
+                }
             }
-            if (dia > 31) {
-                JOptionPane.showMessageDialog(this, "Los dias no pueden ser mayores de 31");
-                cont++;
-            }
-            i++;
-            }}}catch(Exception e){
-        JOptionPane.showMessageDialog(this, "No puede dejar campos vacíos");
-        cont++;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No puede dejar campos vacíos");
+            cont++;
         }
         return cont > 0;
     }
@@ -411,10 +434,10 @@ public class FechaYHora extends javax.swing.JDialog {
         Calendar fecha;
         int horas;
         int i = 0;
-        while (i<8&&tblTabla.getValueAt(i, 1) != null && tblTabla.getValueAt(i, 2) != null) {
-            
+        while (i < 8 && tblTabla.getValueAt(i, 1) != null && tblTabla.getValueAt(i, 2) != null) {
+
             fecha = fechaCalendar((tblTabla.getValueAt(i, 1) + "").trim());
-            horas = Integer.parseInt((tblTabla.getValueAt(i, 2) + "").trim());          
+            horas = Integer.parseInt((tblTabla.getValueAt(i, 2) + "").trim());
             modulo.AgregarFechaHora(fecha, horas);
             i++;
         }
@@ -441,7 +464,7 @@ public class FechaYHora extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAtras;
-    private datechooser.beans.DateChooserPanel dateChooserPanel1;
+    private datechooser.beans.DateChooserPanel dateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
